@@ -1,0 +1,6 @@
+name: Sign
+version: "1.0.0"
+api: [1.0.0]
+author: hancho
+main: hancho.plugin.nukkit.sign.Sign
+description: "표지판 서명 플러그인"
