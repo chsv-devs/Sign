@@ -62,9 +62,9 @@ public class Sign extends PluginBase implements Listener {
         Config dataConfig = new Config(this.getDataFolder().getAbsolutePath() + "/data.yml", Config.YAML);
         Config signedPlayerConfig = new Config(this.getDataFolder().getAbsolutePath() + "/signedPlayer.yml", Config.YAML);
         Config ownerConfig = new Config(this.getDataFolder().getAbsolutePath() + "/owner.yml", Config.YAML);  //혹시 모를 대비용
-        LinkedHashMap<String, Object> dataMap = new LinkedHashMap(this.data);
-        LinkedHashMap<String, Object> signedPlayerMap = new LinkedHashMap(this.signedPlayer);
-        LinkedHashMap<String, Object> ownerMap = new LinkedHashMap(this.owner);
+        LinkedHashMap dataMap = new LinkedHashMap(this.data);
+        LinkedHashMap signedPlayerMap = new LinkedHashMap(this.signedPlayer);
+        LinkedHashMap ownerMap = new LinkedHashMap(this.owner);
         dataConfig.setAll(dataMap);
         signedPlayerConfig.setAll(signedPlayerMap);
         ownerConfig.setAll(ownerMap);
@@ -168,7 +168,7 @@ public class Sign extends PluginBase implements Listener {
         ArrayList<ElementButton> buttons = new ArrayList<>();
         buttons.add(new ElementButton("§l§0사인하기\n§r사인을 해보세요!"));
         buttons.add(new ElementButton("§0§l목록\n§r사인들을 확인해보세요"));
-        FormWindowSimple form = new FormWindowSimple("§0서명", PREFIX + "사인을 남겨서 자신의 발자국을 남겨보세요!", buttons);
+        FormWindowSimple form = new FormWindowSimple("§0서명", PREFIX + "사인을 남겨서 자신의 흔적을 남겨보세요!\n" + PREFIX + "§r§f표지판에 사인을 적어 직접 만들 수 있습니다.\n\n", buttons);
         player.showFormWindow(form, MAIN_FORM);
     }
     public void showCheckSignForm(Player player){
@@ -177,14 +177,14 @@ public class Sign extends PluginBase implements Listener {
     }
 
     public void showSignList(Player player){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("§o");
         ArrayList<String> list = this.data.get(this.queue.get(player.getName()));
         for(String sign : list){
             String[] strings = sign.split("_");
             sb
                     .append("§b")
                     .append(strings[0])
-                    .append("§f님의 사인 (§o")
+                    .append("§f님의 사인 (")
                     .append(strings[1])
                     .append(")")
                     .append("\n");
